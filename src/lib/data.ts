@@ -66,7 +66,7 @@ export const inPA = (lat: number, lng: number) =>
 export async function geocode(q: string): Promise<GeoResult[]> {
   const m = q.trim().match(/^(-?\d+(?:\.\d+)?)\s*[, ]\s*(-?\d+(?:\.\d+)?)$/);
   if (m) {
-    const lat = parseFloat(m[1]), lng = parseFloat(m[2]);
+    const lat = parseFloat(m[1]!), lng = parseFloat(m[2]!);
     return [{ label: `Coordinates ${lat.toFixed(4)}, ${lng.toFixed(4)}`, lat, lng }];
   }
   const url = `https://nominatim.openstreetmap.org/search?format=json&limit=5&countrycodes=us&viewbox=${PA_BOUNDS.w},${PA_BOUNDS.n},${PA_BOUNDS.e},${PA_BOUNDS.s}&bounded=1&q=${encodeURIComponent(q)}`;

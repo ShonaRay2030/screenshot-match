@@ -17,7 +17,7 @@ export const Route = createFileRoute("/community")({
 const CATS = ["Soil Health", "Irrigation and Water Sources", "Plastic Use in Agriculture", "Microplastics Questions", "Testing and Research", "General Farming"];
 const KINDS = ["Question", "Personal experience", "Research link"] as const;
 type Kind = (typeof KINDS)[number];
-interface Post { id: string; title: string; body: string; cat: string; kind: Kind; county?: string; farmType?: string; author: string; likes: number; liked?: boolean; saved?: boolean; reported?: boolean; comments: { id: string; author: string; text: string }[]; demo?: boolean }
+interface Post { id: string; title: string; body: string; cat: string; kind: Kind; county?: string | undefined; farmType?: string | undefined; author: string; likes: number; liked?: boolean; saved?: boolean; reported?: boolean; comments: { id: string; author: string; text: string }[]; demo?: boolean }
 
 const seed = (): Post[] => [
   { id: "d1", demo: true, title: "How do you remove plastic mulch completely?", body: "Every fall I find shreds left in the beds. Curious what tools or timing others use.", cat: "Plastic Use in Agriculture", kind: "Question", county: "Lancaster", farmType: "Vegetables", author: "Demo farmer", likes: 3, comments: [{ id: "c1", author: "Demo farmer 2", text: "(Example reply) We pull it while it's still pliable." }] },
@@ -97,7 +97,7 @@ function Comments({ post, onAdd }: { post: Post; onAdd: (t: string) => void }) {
 
 function Composer({ onPost, onCancel }: { onPost: (p: Post) => void; onCancel: () => void }) {
   const [title, setTitle] = useState(""); const [body, setBody] = useState("");
-  const [cat, setCat] = useState(CATS[0]); const [kind, setKind] = useState<Kind>("Question");
+  const [cat, setCat] = useState<string>(CATS[0]!); const [kind, setKind] = useState<Kind>("Question");
   const [county, setCounty] = useState(""); const [farmType, setFarmType] = useState(""); const [err, setErr] = useState("");
   return (
     <form className="card-surface space-y-3 p-5" onSubmit={(e) => {

@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
-export default function PAMap({ point, onSelect }: { point?: { lat: number; lng: number }; onSelect: (lat: number, lng: number) => void }) {
+export default function PAMap({ point, onSelect }: { point?: { lat: number; lng: number } | undefined; onSelect: (lat: number, lng: number) => void }) {
   const el = useRef<HTMLDivElement>(null);
   const map = useRef<L.Map | null>(null);
   const marker = useRef<L.CircleMarker | null>(null);

@@ -15,7 +15,7 @@ export function LocationSearch({ onPick }: { onPick: (r: GeoResult) => void }) {
     try {
       const r = await geocode(q);
       setResults(r);
-      if (r.length === 1) onPick(r[0]);
+      if (r.length === 1) onPick(r[0]!);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Search failed");
     } finally { setLoading(false); }
