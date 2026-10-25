@@ -10,33 +10,141 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as CommunityRouteImport } from './routes/community'
+import { Route as CompareRouteImport } from './routes/compare'
+import { Route as FarmsRouteImport } from './routes/farms'
+import { Route as LearnRouteImport } from './routes/learn'
+import { Route as MapRouteImport } from './routes/map'
+import { Route as StepsRouteImport } from './routes/steps'
+import { Route as FarmsFarmIdRouteImport } from './routes/farms_.$farmId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommunityRoute = CommunityRouteImport.update({
+  id: '/community',
+  path: '/community',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CompareRoute = CompareRouteImport.update({
+  id: '/compare',
+  path: '/compare',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FarmsRoute = FarmsRouteImport.update({
+  id: '/farms',
+  path: '/farms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LearnRoute = LearnRouteImport.update({
+  id: '/learn',
+  path: '/learn',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MapRoute = MapRouteImport.update({
+  id: '/map',
+  path: '/map',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StepsRoute = StepsRouteImport.update({
+  id: '/steps',
+  path: '/steps',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FarmsFarmIdRoute = FarmsFarmIdRouteImport.update({
+  id: '/farms_/$farmId',
+  path: '/farms/$farmId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/community': typeof CommunityRoute
+  '/compare': typeof CompareRoute
+  '/farms': typeof FarmsRoute
+  '/learn': typeof LearnRoute
+  '/map': typeof MapRoute
+  '/steps': typeof StepsRoute
+  '/farms/$farmId': typeof FarmsFarmIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/community': typeof CommunityRoute
+  '/compare': typeof CompareRoute
+  '/farms': typeof FarmsRoute
+  '/learn': typeof LearnRoute
+  '/map': typeof MapRoute
+  '/steps': typeof StepsRoute
+  '/farms/$farmId': typeof FarmsFarmIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/community': typeof CommunityRoute
+  '/compare': typeof CompareRoute
+  '/farms': typeof FarmsRoute
+  '/learn': typeof LearnRoute
+  '/map': typeof MapRoute
+  '/steps': typeof StepsRoute
+  '/farms_/$farmId': typeof FarmsFarmIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/community'
+    | '/compare'
+    | '/farms'
+    | '/learn'
+    | '/map'
+    | '/steps'
+    | '/farms/$farmId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/community'
+    | '/compare'
+    | '/farms'
+    | '/learn'
+    | '/map'
+    | '/steps'
+    | '/farms/$farmId'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/community'
+    | '/compare'
+    | '/farms'
+    | '/learn'
+    | '/map'
+    | '/steps'
+    | '/farms_/$farmId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  CommunityRoute: typeof CommunityRoute
+  CompareRoute: typeof CompareRoute
+  FarmsRoute: typeof FarmsRoute
+  LearnRoute: typeof LearnRoute
+  MapRoute: typeof MapRoute
+  StepsRoute: typeof StepsRoute
+  FarmsFarmIdRoute: typeof FarmsFarmIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +156,75 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/community': {
+      id: '/community'
+      path: '/community'
+      fullPath: '/community'
+      preLoaderRoute: typeof CommunityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/compare': {
+      id: '/compare'
+      path: '/compare'
+      fullPath: '/compare'
+      preLoaderRoute: typeof CompareRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/farms': {
+      id: '/farms'
+      path: '/farms'
+      fullPath: '/farms'
+      preLoaderRoute: typeof FarmsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/learn': {
+      id: '/learn'
+      path: '/learn'
+      fullPath: '/learn'
+      preLoaderRoute: typeof LearnRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/map': {
+      id: '/map'
+      path: '/map'
+      fullPath: '/map'
+      preLoaderRoute: typeof MapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/steps': {
+      id: '/steps'
+      path: '/steps'
+      fullPath: '/steps'
+      preLoaderRoute: typeof StepsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/farms_/$farmId': {
+      id: '/farms_/$farmId'
+      path: '/farms/$farmId'
+      fullPath: '/farms/$farmId'
+      preLoaderRoute: typeof FarmsFarmIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  CommunityRoute: CommunityRoute,
+  CompareRoute: CompareRoute,
+  FarmsRoute: FarmsRoute,
+  LearnRoute: LearnRoute,
+  MapRoute: MapRoute,
+  StepsRoute: StepsRoute,
+  FarmsFarmIdRoute: FarmsFarmIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
