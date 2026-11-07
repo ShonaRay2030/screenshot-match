@@ -8,6 +8,8 @@ export const Route = createFileRoute("/")({
     { name: "description", content: "Explore environmental indicators that may relate to potential microplastics risk in Pennsylvania agricultural soil." },
     { property: "og:title", content: "Keystone Soil Watch" },
     { property: "og:description", content: "A prototype screening tool and community for Pennsylvania farmers." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
   ] }),
   component: Index,
 });
@@ -48,7 +50,7 @@ function Index() {
             ["3. Plan next steps", "Get questions to investigate, people to consult, and practices to consider."],
           ].map(([t, d]) => <div key={t} className="card-surface p-5"><h3 className="text-lg font-semibold">{t}</h3><p className="mt-2 text-sm text-muted-foreground">{d}</p></div>)}
         </div>
-        <p className="mt-4 text-sm text-muted-foreground">Status: the map and search work today. Environmental datasets and the risk-scoring model are still being developed, so results currently read “Assessment Under Development.”</p>
+        <p className="mt-4 text-sm text-muted-foreground">Status: the map includes October 2026 beneficial land use records. Additional datasets and the risk-scoring model are still being developed, so results currently read “Assessment Under Development.”</p>
       </section>
 
       <section className="bg-muted">

@@ -11,6 +11,8 @@ export const Route = createFileRoute("/farms")({
     { name: "description", content: "Manage multiple farm profiles, notes, and assessment status." },
     { property: "og:title", content: "My Farms — Keystone Soil Watch" },
     { property: "og:description", content: "Add, edit, and compare your farms." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
   ] }),
   component: FarmsPage,
 });

@@ -9,6 +9,8 @@ export const Route = createFileRoute("/compare")({
     { name: "description", content: "Compare indicators, data coverage, and assessment status across your farms." },
     { property: "og:title", content: "Compare Farms" },
     { property: "og:description", content: "Side-by-side comparison of your farms." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
   ] }),
   component: Compare,
 });

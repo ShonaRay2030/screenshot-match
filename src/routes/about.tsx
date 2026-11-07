@@ -7,6 +7,8 @@ export const Route = createFileRoute("/about")({
     { name: "description", content: "Why microplastics in agricultural soil matter and who is building this tool." },
     { property: "og:title", content: "Our Mission — Keystone Soil Watch" },
     { property: "og:description", content: "Why microplastics in soil matter, and the founder behind the project." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
   ] }),
   component: About,
 });

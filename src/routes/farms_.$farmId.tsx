@@ -12,6 +12,8 @@ export const Route = createFileRoute("/farms_/$farmId")({
     { name: "robots", content: "noindex" },
     { property: "og:title", content: "Farm dashboard" },
     { property: "og:description", content: "Private farm dashboard." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
   ] }),
   component: FarmPage,
 });

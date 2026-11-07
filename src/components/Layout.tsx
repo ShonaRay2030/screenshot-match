@@ -49,7 +49,7 @@ export function SiteFooter() {
     <footer className="mt-20 border-t bg-muted">
       <div className="mx-auto max-w-6xl px-4 py-8 text-sm text-muted-foreground">
         <p className="font-semibold text-foreground">Prototype risk-screening tool.</p>
-        <p className="mt-1 max-w-3xl">This site estimates potential risk from indirect environmental indicators. It does not detect or measure microplastics, and cannot confirm their presence or concentration in any soil. No real environmental datasets are connected yet.</p>
+        <p className="mt-1 max-w-3xl">This site is being developed to screen potential risk from indirect environmental indicators. It does not detect or measure microplastics, and cannot confirm their presence or concentration in any soil. Beneficial land use records are available as a reference map layer; the risk-scoring model is not yet developed or validated.</p>
       </div>
     </footer>
   );

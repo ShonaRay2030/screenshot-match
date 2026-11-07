@@ -7,6 +7,8 @@ export const Route = createFileRoute("/learn")({
     { name: "description", content: "What microplastics are, how they may reach farmland, and how this tool's methodology works." },
     { property: "og:title", content: "Learn & Data Sources" },
     { property: "og:description", content: "Background, data sources, and methodology." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
   ] }),
   component: Learn,
 });
@@ -37,7 +39,8 @@ function Learn() {
         </div>
 
         <section>
-          <div className="flex items-center gap-2"><h2 className="text-2xl font-semibold">Data sources</h2><DemoBadge>Identified · not yet integrated</DemoBadge></div>
+          <div className="flex items-center gap-2"><h2 className="text-2xl font-semibold">Data sources</h2><DemoBadge>1 reference layer available</DemoBadge></div>
+          <p className="mt-3 text-sm text-muted-foreground">Beneficial Land Uses · PA DEP, user-supplied October 2026 files: 1,125 records mapped, with 4 excluded for inconsistent coordinates. Records describe listed biosolids or residential septage land-application sites; they do not confirm application or microplastic contamination. The supplied projection was used for conversion, but descriptive metadata conflicts and field definitions remain under review. Other datasets below are not yet integrated.</p>
           <ul className="mt-4 grid gap-3 md:grid-cols-2">
             {PORTALS.map(([n, u, d]) => <li key={n} className="card-surface p-4"><a href={u} target="_blank" rel="noreferrer" className="font-semibold text-primary underline">{n} ↗</a><p className="text-sm text-muted-foreground">{d}</p></li>)}
           </ul>

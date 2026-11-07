@@ -9,6 +9,8 @@ export const Route = createFileRoute("/steps")({
     { name: "description", content: "Understand your results, investigate further, and explore possible mitigation options." },
     { property: "og:title", content: "Recommended Steps for Farmers" },
     { property: "og:description", content: "A practical checklist for next steps." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
   ] }),
   component: Steps,
 });

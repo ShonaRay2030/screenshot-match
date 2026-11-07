@@ -10,6 +10,8 @@ export const Route = createFileRoute("/community")({
     { name: "description", content: "Got questions? Chat with farmers in your area about soil, water, and plastics." },
     { property: "og:title", content: "Farmer Community" },
     { property: "og:description", content: "Discussions among Pennsylvania farmers." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
   ] }),
   component: Community,
 });

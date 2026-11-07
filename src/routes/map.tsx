@@ -3,6 +3,8 @@ import { lazy, Suspense, useState } from "react";
 import { PageHeader, DemoBadge } from "@/components/Layout";
 import { LocationSearch } from "@/components/LocationSearch";
 import { LocationReport } from "@/components/LocationReport";
+import { Checkbox } from "@/components/ui/checkbox";
+import { LAND_USE_DATA, type LayerState } from "@/lib/beneficial-land-use";
 
 const PAMap = lazy(() => import("@/components/PAMap"));
 
@@ -12,6 +14,8 @@ export const Route = createFileRoute("/map")({
     { name: "description", content: "Search or click a Pennsylvania location to see which environmental indicators are available." },
     { property: "og:title", content: "Explore the Pennsylvania Map" },
     { property: "og:description", content: "Select a location to review environmental indicators and data limitations." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
   ] }),
   component: MapPage,
 });
@@ -20,6 +24,8 @@ const LAYERS = ["Wastewater discharge locations", "Relevant facilities", "Waterw
 
 function MapPage() {
   const [sel, setSel] = useState<{ lat: number; lng: number; label?: string }>();
+  const [showLandUses, setShowLandUses] = useState(true);
+  const [layerState, setLayerState] = useState<LayerState>("loading");
   const Fallback = <div className="flex h-full items-center justify-center bg-muted text-sm text-muted-foreground">Loading map…</div>;
   return (
     <>
@@ -27,7 +33,7 @@ function MapPage() {
       <div className="mx-auto grid max-w-6xl gap-6 px-4 lg:grid-cols-[1fr_380px]">
         <div className="card-surface h-[520px] overflow-hidden">
           <ClientOnly fallback={Fallback}>
-            <Suspense fallback={Fallback}><PAMap point={sel} onSelect={(lat, lng) => setSel({ lat, lng })} /></Suspense>
+            <Suspense fallback={Fallback}><PAMap point={sel} onSelect={(lat, lng) => setSel({ lat, lng })} showLandUses={showLandUses} onLayerState={setLayerState} /></Suspense>
           </ClientOnly>
         </div>
         <aside className="space-y-4">
@@ -39,8 +45,18 @@ function MapPage() {
       </div>
       <div className="mx-auto mt-6 max-w-6xl px-4">
         <div className="card-surface p-4">
-          <div className="flex items-center gap-2"><h2 className="text-lg font-semibold">Data layers</h2><DemoBadge>Awaiting data</DemoBadge></div>
-          <p className="mt-1 text-sm text-muted-foreground">These layers will appear once cleaned datasets are connected. Nothing is drawn now so no facility, pollution point, or score is shown as real.</p>
+          <div className="flex items-center gap-2"><h2 className="text-lg font-semibold">Data layers</h2><DemoBadge>1 dataset available</DemoBadge></div>
+          <div className="mt-3 border-b pb-4">
+            <label className="flex items-center gap-2 text-sm font-semibold">
+              <Checkbox checked={showLandUses} onCheckedChange={(checked) => setShowLandUses(checked === true)} aria-label="Beneficial land use sites" />
+              <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-primary" />Beneficial land use sites
+            </label>
+            <p role="status" className="mt-2 text-sm text-muted-foreground">{!showLandUses ? "Layer hidden" : layerState === "loading" ? "Loading records…" : layerState === "error" ? "Records could not load. Toggle the layer off and on to retry." : `${LAND_USE_DATA.mapped.toLocaleString()} records mapped`} · {LAND_USE_DATA.source} · {LAND_USE_DATA.date}</p>
+            <p className="mt-2 text-xs text-muted-foreground">{LAND_USE_DATA.total.toLocaleString()} uploaded records; {LAND_USE_DATA.excluded} excluded for inconsistent coordinates. Points represent listed land-application records, not parcel boundaries, confirmed application, or measured contamination. All recorded statuses are included; multiple records may share a location.</p>
+            <p className="mt-2 text-xs text-muted-foreground">Coordinates were converted using the supplied Web Mercator projection; the descriptive metadata references an older, conflicting projection and record count. Field definitions and source accuracy still require review. Client names and identifiers are omitted.</p>
+            <a href="https://www.pasda.psu.edu/" target="_blank" rel="noreferrer" className="mt-2 inline-block text-xs font-medium text-primary underline">Metadata source: PA DEP via PASDA ↗</a>
+          </div>
+          <p className="mt-3 text-sm text-muted-foreground">Other layers are awaiting data. No risk score is available until the assessment methodology is developed and validated.</p>
           <div className="mt-3 flex flex-wrap gap-2">
             {LAYERS.map((l) => <label key={l} className="flex items-center gap-2 rounded-full border px-3 py-1.5 text-sm text-muted-foreground"><input type="checkbox" disabled /> {l}</label>)}
           </div>

@@ -12,3 +12,4 @@
 - Prototype stores farms, steps, and community posts in browser localStorage via `useStored` in src/lib/data.ts; swap to Lovable Cloud with auth before any real multi-user data. Why: no accounts exist yet, so nothing may claim secure storage.
 - Map uses Leaflet + OpenStreetMap (free, no keys), lazy-loaded behind ClientOnly. Why: Leaflet touches window at import.
 - Never render invented risk scores, facilities, or citations; show "Assessment Under Development"/"Insufficient Data" until the real pipeline exists.
+- Public reference map layers use validated WGS84 GeoJSON via asset pointers, without client names; reject inconsistent source coordinates rather than guessing corrections. Why: source geometry and metadata can disagree, and a listed record is not evidence of contamination.
