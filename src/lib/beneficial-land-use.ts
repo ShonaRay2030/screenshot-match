@@ -8,6 +8,21 @@ export interface LandUseFeature {
 export interface LandUseCollection { type: "FeatureCollection"; features: LandUseFeature[] }
 export type LayerState = "loading" | "ready" | "error";
 
+export interface LandUseCategory {
+  key: string;
+  label: string;
+  cssVar: string;
+  dotClass: string;
+  count: number;
+}
+
+export const LAND_USE_CATEGORIES: LandUseCategory[] = [
+  { key: "AGRICULTURE", label: "Agriculture", cssVar: "--layer-agriculture", dotClass: "bg-layer-agriculture", count: 1089 },
+  { key: "MINE", label: "Mine", cssVar: "--layer-mine", dotClass: "bg-layer-mine", count: 10 },
+  { key: "FOREST", label: "Forest", cssVar: "--layer-forest", dotClass: "bg-layer-forest", count: 1 },
+  { key: "Unavailable", label: "Land use unavailable", cssVar: "--layer-unavailable", dotClass: "bg-layer-unavailable", count: 25 },
+];
+
 export const LAND_USE_DATA = {
   source: "PA DEP · user-supplied files",
   date: "October 2026",

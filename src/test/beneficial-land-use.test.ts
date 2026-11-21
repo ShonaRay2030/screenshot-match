@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { isMappableCoordinate, LAND_USE_DATA } from "@/lib/beneficial-land-use";
+import { isMappableCoordinate, LAND_USE_CATEGORIES, LAND_USE_DATA } from "@/lib/beneficial-land-use";
 
 describe("Beneficial land use coordinate quality", () => {
   it("accepts the first transformed source location", () => {
@@ -17,5 +17,9 @@ describe("Beneficial land use coordinate quality", () => {
     expect(LAND_USE_DATA.mapped).toBe(1125);
     expect(LAND_USE_DATA.excluded).toBe(4);
     expect(LAND_USE_DATA.mapped + LAND_USE_DATA.excluded).toBe(LAND_USE_DATA.total);
+  });
+  it("splits mapped records into land-use layers that account for every record", () => {
+    expect(LAND_USE_CATEGORIES.map((c) => c.key)).toEqual(["AGRICULTURE", "MINE", "FOREST", "Unavailable"]);
+    expect(LAND_USE_CATEGORIES.reduce((sum, c) => sum + c.count, 0)).toBe(LAND_USE_DATA.mapped);
   });
 });

@@ -36,6 +36,10 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-layer-agriculture: var(--layer-agriculture);
+  --color-layer-mine: var(--layer-mine);
+  --color-layer-forest: var(--layer-forest);
+  --color-layer-unavailable: var(--layer-unavailable);
 }
 
 :root {
@@ -64,6 +68,10 @@
   --border: oklch(0.87 0.025 100);
   --input: oklch(0.85 0.025 100);
   --ring: oklch(0.55 0.07 150);
+  --layer-agriculture: oklch(0.55 0.1 145);
+  --layer-mine: oklch(0.52 0.09 55);
+  --layer-forest: oklch(0.45 0.08 175);
+  --layer-unavailable: oklch(0.62 0.02 100);
 }
 
 @layer base {
