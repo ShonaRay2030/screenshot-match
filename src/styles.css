@@ -40,6 +40,11 @@
   --color-layer-mine: var(--layer-mine);
   --color-layer-forest: var(--layer-forest);
   --color-layer-unavailable: var(--layer-unavailable);
+  --color-choro-0: var(--choro-0);
+  --color-choro-1: var(--choro-1);
+  --color-choro-2: var(--choro-2);
+  --color-choro-3: var(--choro-3);
+  --color-choro-4: var(--choro-4);
 }
 
 :root {
@@ -72,6 +77,11 @@
   --layer-mine: oklch(0.52 0.09 55);
   --layer-forest: oklch(0.45 0.08 175);
   --layer-unavailable: oklch(0.62 0.02 100);
+  --choro-0: oklch(0.97 0.01 100);
+  --choro-1: oklch(0.88 0.06 120);
+  --choro-2: oklch(0.74 0.1 135);
+  --choro-3: oklch(0.58 0.12 145);
+  --choro-4: oklch(0.4 0.1 150);
 }
 
 @layer base {
