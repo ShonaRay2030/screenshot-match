@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import { LAND_USE_CATEGORIES, loadLandUses, type LandUseFeature, type LayerState } from "@/lib/beneficial-land-use";
+import { LAND_USE_CATEGORIES, loadLandUses, type LandUseCollection, type LandUseFeature, type LayerState } from "@/lib/beneficial-land-use";
 
 export default function PAMap({ point, onSelect, visibleLayers, onLayerState }: { point?: { lat: number; lng: number } | undefined; onSelect: (lat: number, lng: number) => void; visibleLayers: Record<string, boolean>; onLayerState?: (state: LayerState) => void }) {
   const el = useRef<HTMLDivElement>(null);
@@ -40,8 +40,9 @@ export default function PAMap({ point, onSelect, visibleLayers, onLayerState }: 
       }
       for (const category of LAND_USE_CATEGORIES) {
         const color = styles.getPropertyValue(category.cssVar).trim();
+        const collection: LandUseCollection = { type: "FeatureCollection", features: groups[category.key] ?? [] };
         layers.current[category.key] = L.geoJSON(
-          { type: "FeatureCollection", features: groups[category.key] ?? [] },
+          collection,
           {
             pointToLayer: (feature, latlng) => L.circleMarker(latlng, {
               radius: 5, color, fillColor: color, fillOpacity: 0.65, weight: 1,
